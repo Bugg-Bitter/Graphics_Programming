@@ -1,0 +1,103 @@
+// Algorithm Name : DDA (Line Drawing Algorithm)
+// Starting coordinates  : (X0,Y0)
+// Ending coordinates : (Xn,yn)
+
+
+// Step - 1 :
+// Calculate the △X and △y
+// So , △X = Xn - X0
+// So , △Y = Yn - Y0
+
+
+
+// Step - 2 :
+// Calculate the steps value
+// by Comparing the △X and △y
+// If (△X > △Y) steps = △X
+// else (△X < △Y) steps = △Y
+
+
+
+// Step - 3 :
+// Calculate M value.
+// M = △Y / △X
+// if(M > 1) Xp+1 = round off(1+Xp) and Yp+1 = round off(M+Yp)
+// else if (M == 1) Xp+1 = round off(1+Xp) and Yp+1 = round off(1+Yp)
+// else Xp+1 = round off(1/M+Xp) and Yp+1 = round off(1+Yp)
+
+// Done !!
+// Let's Write Code :D
+
+
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main (){
+
+    int X0,Y0,Xn,Yn;
+    int tracker = 0;
+
+    cout << "X0 = ";
+    cin >> X0;
+    cout << endl << "Y0 = ";
+    cin >> Y0;
+    cout << endl << "Xn = ";
+    cin >> Xn;
+    cout << endl << "Yn = ";
+    cin >> Yn;
+
+    int DEL_X = Xn - X0;
+    int DEL_Y = Yn - Y0;
+    double M = (double)DEL_Y / (double)DEL_X;
+
+    int steps;
+    double Xp[30];
+    double Yp[30];
+    if(DEL_X > DEL_Y)
+        steps = DEL_X;
+    else steps = DEL_Y;
+
+    if(M < 1){
+            Xp[0] = 1 + X0;
+            Yp[0] = M + Y0;
+            for(int i=1;i<=steps;i++){
+                Xp[i] = 1 + Xp[i-1];
+                Yp[i] = M + Yp[i-1];
+            }
+    }else if(M == 1){
+            Xp[0] = 1 + X0;
+            Yp[0] = 1 + Y0;
+            for(int i=1;i<=steps;i++){
+                Xp[i] = 1 + Xp[i-1];
+                Yp[i] = 1 + Yp[i-1];
+            }
+    }else{
+            Xp[0] = ((double)(1.0/M)) + X0;
+            Yp[0] = 1 + Y0;
+            for(int i=1;i<steps;i++){
+                Xp[i] = ((double)(1.0/M)) + Xp[i-1];
+                Yp[i] = 1 + Yp[i-1];
+            }
+    }
+
+    cout << endl << endl <<"\t\t Xp\t" << "Yp\t" << "Xp+1\t" << "Yp+1\t" << "Round Off (Xp+1 , Yp+1)" << endl;
+    cout << endl << endl <<"\t\t " << X0 << "\t" << Y0;
+
+    while(tracker<steps){
+            if(tracker == 0)
+            cout << "\t" << Xp[tracker] << "\t" << Yp[tracker] << "\t(" << ceil(Xp[tracker]) << "," << ceil(Yp[tracker]) << ")" << endl;
+        else
+        cout << "\t\t\t\t"<< Xp[tracker] << "\t" << Yp[tracker] << "\t(" << ceil(Xp[tracker]) << "," << ceil(Yp[tracker]) << ")" << endl;
+        ++tracker;
+    }
+
+return 0;
+}
+
+
+/*
+Code Written By,
+Atef Shahrier Evan
+ID : 193-15-2948
+Batch : 54 || PC-A
+*/
