@@ -1,0 +1,193 @@
+#include<windows.h>
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <GL/glut.h>
+#endif
+#include <stdlib.h>
+#include <GL/gl.h>
+#include <GL/glut.h>
+#include<math.h>
+#define PI 3.1416
+void display(void)
+{
+/* clear all pixels */
+glClear (GL_COLOR_BUFFER_BIT);
+/* draw white polygon (rectangle) with corners at
+* (0.25, 0.25, 0.0) and (0.75, 0.75, 0.0)
+*/
+
+/// 2 hands
+glColor3f(1,1,0);
+glBegin(GL_LINES);
+glVertex2f(-0.5,0.1);
+glVertex2f(0.5,0.1);
+glEnd();
+
+
+/// body line
+glColor3f(1,1,0);
+glBegin(GL_LINES);
+glVertex2f(0.0,0.25);
+glVertex2f(0.0,-0.35);
+glEnd();
+
+
+///  [ Leg Section ]
+/// Left Leg
+glColor3f(1,1,0);
+glBegin(GL_LINES);
+glVertex2f(0.0,-0.35);
+glVertex2f(-0.3,-0.55);
+glEnd();
+
+/// Right Leg
+glColor3f(1,1,0);
+glBegin(GL_LINES);
+glVertex2f(0.0,-0.35);
+glVertex2f(0.3,-0.55);
+glEnd();
+
+
+
+/// [ Skull Section ]
+
+    /// Face Rounder
+    int i;
+    GLfloat x = 0.0f; GLfloat y = 0.5f; GLfloat radius = .250f;
+    int triangleAmount = 40;
+
+    GLfloat twicePi = 2.0f * PI;
+
+    glBegin(GL_TRIANGLE_FAN);
+
+    glColor3f(1,1,0);
+    glVertex2f(x, y);
+    for(i = 0; i <= triangleAmount; i++){
+        glVertex2f(
+                    x + (radius * cos(i * twicePi / triangleAmount)),
+                    y + (radius * sin(i * twicePi / triangleAmount))
+                   );
+    }
+    glEnd();
+
+
+    /// Left Eye Border
+    int left_eye_border_i;
+    GLfloat left_eye_border_x = -0.1f; GLfloat left_eye_border_y = 0.55f; GLfloat left_eye_border_radius = .06f;
+    int left_eye_border_triangleAmount = 40;
+
+    GLfloat left_eye_border_twicePi = 2.0f * PI;
+
+    glBegin(GL_TRIANGLE_FAN);
+
+    glColor3f(0,1,1);
+    glVertex2f(left_eye_border_x, left_eye_border_y);
+    for(left_eye_border_i = 0; left_eye_border_i <= triangleAmount; left_eye_border_i++){
+        glVertex2f(
+                    left_eye_border_x + (left_eye_border_radius * cos(left_eye_border_i * left_eye_border_twicePi / left_eye_border_triangleAmount)),
+                    left_eye_border_y + (left_eye_border_radius * sin(left_eye_border_i * left_eye_border_twicePi / left_eye_border_triangleAmount))
+                   );
+    }
+    glEnd();
+
+
+
+
+    /// Left Eye MOni
+    int left_eye_moni_i;
+    GLfloat left_eye_moni_x = -0.1f; GLfloat left_eye_moni_y = 0.55f; GLfloat left_eye_moni_radius = .02f;
+    int left_eye_moni_triangleAmount = 40;
+
+    GLfloat left_eye_moni_twicePi = 2.0f * PI;
+
+    glBegin(GL_TRIANGLE_FAN);
+
+    glColor3f(1,0,0);
+    glVertex2f(left_eye_moni_x, left_eye_moni_y);
+    for(left_eye_moni_i = 0; left_eye_moni_i <= left_eye_moni_triangleAmount; left_eye_moni_i++){
+        glVertex2f(
+                    left_eye_moni_x + (left_eye_moni_radius * cos(left_eye_moni_i * left_eye_moni_twicePi / left_eye_moni_triangleAmount)),
+                    left_eye_moni_y + (left_eye_moni_radius * sin(left_eye_moni_i * left_eye_moni_twicePi / left_eye_moni_triangleAmount))
+                   );
+    }
+    glEnd();
+
+
+
+    /// Right Eye Border
+    int right_eye_border_i;
+    GLfloat right_eye_border_x = 0.1f; GLfloat right_eye_border_y = 0.55f; GLfloat right_eye_border_radius = .06f;
+    int right_eye_border_triangleAmount = 40;
+
+    GLfloat right_eye_border_twicePi = 2.0f * PI;
+
+    glBegin(GL_TRIANGLE_FAN);
+
+    glColor3f(0,1,1);
+    glVertex2f(right_eye_border_x, right_eye_border_y);
+    for(right_eye_border_i = 0; right_eye_border_i <= right_eye_border_triangleAmount; right_eye_border_i++){
+        glVertex2f(
+                    right_eye_border_x + (right_eye_border_radius * cos(right_eye_border_i * right_eye_border_twicePi / right_eye_border_triangleAmount)),
+                    right_eye_border_y + (right_eye_border_radius * sin(right_eye_border_i * right_eye_border_twicePi / right_eye_border_triangleAmount))
+                   );
+    }
+    glEnd();
+
+
+
+
+    /// Right Eye MOni
+    int right_eye_moni_i;
+    GLfloat right_eye_moni_x = 0.1f; GLfloat right_eye_moni_y = 0.55f; GLfloat right_eye_moni_radius = .02f;
+    int right_eye_moni_triangleAmount = 40;
+
+    GLfloat right_eye_moni_twicePi = 2.0f * PI;
+
+    glBegin(GL_TRIANGLE_FAN);
+
+    glColor3f(1,0,0);
+    glVertex2f(right_eye_moni_x, right_eye_moni_y);
+    for(right_eye_moni_i = 0; right_eye_moni_i <= right_eye_moni_triangleAmount; right_eye_moni_i++){
+        glVertex2f(
+                    right_eye_moni_x + (right_eye_moni_radius * cos(right_eye_moni_i * right_eye_moni_twicePi / right_eye_moni_triangleAmount)),
+                    right_eye_moni_y + (right_eye_moni_radius * sin(right_eye_moni_i * right_eye_moni_twicePi / right_eye_moni_triangleAmount))
+                   );
+    }
+    glEnd();
+
+
+
+    /// Half Smile
+    int half_smile_i;
+    GLfloat half_smile_x = 0.0f; GLfloat half_smile_y = 0.4f; GLfloat half_smile_radius = 0.100f;
+    int half_smile_triangleAmount = 40;
+
+    GLfloat half_smile_twicePi = -1.0f * PI;
+
+    glBegin(GL_TRIANGLE_FAN);
+
+    glColor3f(1,0,0);
+    glVertex2f(half_smile_x, half_smile_y);
+    for(half_smile_i = 0; half_smile_i <= half_smile_triangleAmount; half_smile_i++){
+        glVertex2f(
+                    half_smile_x + (half_smile_radius * cos(half_smile_i * half_smile_twicePi / half_smile_triangleAmount)),
+                    half_smile_y + (half_smile_radius * sin(half_smile_i * half_smile_twicePi / half_smile_triangleAmount))
+                   );
+    }
+    glEnd();
+
+
+glFlush ();
+}
+
+int main(int argc, char** argv)
+{
+glutInit(&argc, argv);
+glutCreateWindow ("Triangles");
+glutInitWindowSize(1366,768);
+glutDisplayFunc(display);
+
+glutMainLoop();
+return 0; /* ISO C requires main to return int. */
+}
